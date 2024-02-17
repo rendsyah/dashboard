@@ -1,0 +1,17 @@
+@import '@/styles/_variables';
+@import '@/styles/_mixins';
+
+.icon {
+  @include flex-center;
+
+  height: 32px;
+  width: 32px;
+  border-radius: 10px;
+  box-shadow:
+    rgba(20, 20, 20, 0.12) 0px 4px 6px -1px,
+    rgba(20, 20, 20, 0.07) 0px 2px 4px -1px;
+  -webkit-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
