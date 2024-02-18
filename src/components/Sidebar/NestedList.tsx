@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
-import { ChevronDown, ChevronUp, Icon as IconTypes } from 'react-feather';
-import { SidebarListProps } from './Sidebar.types';
-import Icon from '../Icon';
+import { ChevronDown, ChevronRight } from 'react-feather';
+import IconSquare from '../Icon/Square';
+import IconSelector from '../Icon/Selector';
 import styles from './Sidebar.module.scss';
 
 const NestedList: React.FC<SidebarListProps> = (props: SidebarListProps) => {
@@ -25,31 +25,33 @@ const NestedList: React.FC<SidebarListProps> = (props: SidebarListProps) => {
         })}
         onClick={handleOpen}
       >
-        <Icon
+        <IconSquare
           color={parentRoute === menu.path ? '#fff' : '#4f8fbf'}
           background={parentRoute === menu.path ? '#4f8fbf' : '#fff'}
-          icon={menu.icon as IconTypes}
+          icon={IconSelector(menu.icon)}
           size={14}
         />
         <span>{menu.name}</span>
         <div className={styles.sidebar__menu__list__icon}>
-          <div>{open ? <ChevronUp size={14} /> : <ChevronDown size={14} />}</div>
+          <div>{open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}</div>
         </div>
       </div>
       {open && (
-        <>
+        <ul>
           {menu.child.map((child, idx) => (
-            <Link key={child.name + idx} href={child.path}>
-              <div
-                className={cx(styles.sidebar__menu__nested, {
-                  [styles.sidebar__menu__nested__active]: currentRoute === child.path,
-                })}
-              >
-                <span>{child.name}</span>
-              </div>
-            </Link>
+            <li key={child.name + idx}>
+              <Link href={child.path}>
+                <div
+                  className={cx(styles.sidebar__menu__nested, {
+                    [styles.sidebar__menu__nested__active]: currentRoute === child.path,
+                  })}
+                >
+                  <span>{child.name}</span>
+                </div>
+              </Link>
+            </li>
           ))}
-        </>
+        </ul>
       )}
     </>
   );

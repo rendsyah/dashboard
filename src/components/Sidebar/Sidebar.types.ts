@@ -1,13 +1,11 @@
-import { Icon } from 'react-feather';
-
-export type MenuList = {
+type MenuList = {
   name: string;
   path: string;
-  icon: Icon | null;
+  icon: string | null;
   child: MenuList[] | never[];
 };
 
-export type SidebarListProps = {
+type SidebarListProps = {
   currentRoute: string;
   menu: MenuList;
 };

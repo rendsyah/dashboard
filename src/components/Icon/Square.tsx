@@ -1,7 +1,7 @@
-import { IconProps } from './Icon.types';
+import { IconSquareProps } from './Icon.types';
 import styles from './Icon.module.scss';
 
-const Icon: React.FC<IconProps> = (props: IconProps) => {
+const IconSquare: React.FC<IconSquareProps> = (props: IconSquareProps) => {
   return (
     <div className={styles.icon} style={{ background: props.background }}>
       {<props.icon size={props.size} color={props.color} />}
@@ -9,4 +9,4 @@ const Icon: React.FC<IconProps> = (props: IconProps) => {
   );
 };
 
-export default Icon;
+export default IconSquare;
