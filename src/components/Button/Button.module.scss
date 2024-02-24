@@ -1,40 +1,40 @@
-@import '@/styles/_variables';
+@use '@/styles/utils';
+@use '@/styles/variables' as var;
 
 .button {
+  @include utils.transition(0.2s);
+
   width: 100%;
   border-radius: 10px;
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: capitalize;
   padding: 10px 20px;
-  -webkit-transition: 0.2s ease-out;
-  -moz-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
   cursor: pointer;
 
   &__disabled {
-    color: $color-text-disabled;
-    background: $bg-disabled;
+    color: var.$color-text-disabled;
+    background: var.$bg-disabled;
     border: none;
   }
 
   &__primary {
     color: #fff;
-    background: $color-primary;
+    background: var.$color-primary;
     border: none;
 
     &:hover {
-      background: $color-primary-light;
+      background: var.$color-primary-light;
     }
   }
 
   &__secondary {
-    color: $color-primary;
-    background: $color-white;
-    border: 1px solid $color-primary;
+    color: var.$color-primary;
+    background: var.$color-white;
+    border: 1px solid var.$color-primary;
 
     &:hover {
-      border: 1px solid $color-primary-light;
+      border: 1px solid var.$color-primary-light;
     }
   }
 }

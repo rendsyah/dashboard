@@ -2,8 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
 import { ChevronDown, ChevronRight } from 'react-feather';
-import IconSquare from '../Icon/Square';
-import IconSelector from '../Icon/Selector';
+import { IconSelector, IconSquare } from '../Icon';
 import styles from './Sidebar.module.scss';
 
 const NestedList: React.FC<SidebarListProps> = (props: SidebarListProps) => {

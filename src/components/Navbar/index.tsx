@@ -4,23 +4,24 @@ import Link from 'next/link';
 import cx from 'classnames';
 import { useRouter } from 'next/router';
 import { Bell, Inbox, LogOut, Menu, User } from 'react-feather';
-import { useSidebar } from '@/contexts/Sidebar';
-import { listMenu } from '../../../mock/menu';
+import { useSidebar } from '@/contexts';
+import { listMenu } from '@/libs/mock/menu';
 import Paper from '../Paper';
-import styles from './Navbar.module.scss';
 import SingleList from './SingleList';
 import NestedList from './NestedList';
+import styles from './Navbar.module.scss';
 
 const Navbar: React.FC = () => {
   const router = useRouter();
   const currentRoute = router.pathname;
 
   const { handleSidebar } = useSidebar();
-  const [triggerScroll, setTriggerScroll] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [triggerScroll, setTriggerScroll] = React.useState<boolean>(false);
+  const [openProfile, setOpenProfile] = React.useState<boolean>(false);
+  const openProfileRef = React.useRef<HTMLDivElement>(null);
 
-  const handleOpen = () => {
-    setOpen((prev) => !prev);
+  const handleOpenProfile = () => {
+    setOpenProfile((prev) => !prev);
   };
 
   React.useEffect(() => {
@@ -32,10 +33,18 @@ const Navbar: React.FC = () => {
       }
     };
 
+    const onCloseMenu = (e: MouseEvent) => {
+      if (openProfileRef.current && !openProfileRef.current.contains(e.target as Node)) {
+        setOpenProfile(false);
+      }
+    };
+
     window.addEventListener('scroll', onScroll);
+    window.addEventListener('click', onCloseMenu);
 
     return () => {
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('click', onCloseMenu);
     };
   }, []);
 
@@ -65,23 +74,24 @@ const Navbar: React.FC = () => {
         <div className={cx({ [styles.navbar__right__notify]: true })}>
           <Inbox size={18} />
         </div>
-        <div className={styles.navbar__right__profile} onClick={handleOpen}>
-          <div className={styles.navbar__right__avatar}>
-            <Image
-              priority={true}
-              className={styles.navbar__right__image}
-              src={'/images/users.png'}
-              alt="Users"
-              width={0}
-              height={0}
-              sizes="100%"
-            />
+        <div ref={openProfileRef} className={styles.navbar__right__profile}>
+          <div className={styles.navbar__right__user} onClick={handleOpenProfile}>
+            <div className={styles.navbar__right__avatar}>
+              <Image
+                className={styles.navbar__right__image}
+                src={'/images/users.png'}
+                alt="Users"
+                width={0}
+                height={0}
+                sizes="100%"
+              />
+            </div>
+            <div className={styles.navbar__right__account}>
+              <span className={styles.navbar__right__account__name}>Rendy Ferdiansyah</span>
+              <span className={styles.navbar__right__account__role}>Administrator</span>
+            </div>
           </div>
-          <div className={styles.navbar__right__user}>
-            <span className={styles.navbar__right__user__name}>Rendy Ferdiansyah</span>
-            <span className={styles.navbar__right__user__role}>Administrator</span>
-          </div>
-          <div className={cx(styles.navbar__right__menu, { [styles.navbar__right__menu__open]: open })}>
+          <div className={cx(styles.navbar__right__menu, { [styles.navbar__right__menu__open]: openProfile })}>
             <Paper>
               <div className={styles.navbar__right__menu__profile}>
                 <div className={styles.navbar__right__menu__avatar}>
@@ -95,9 +105,9 @@ const Navbar: React.FC = () => {
                     sizes="100%"
                   />
                 </div>
-                <div className={styles.navbar__right__user}>
-                  <span className={styles.navbar__right__user__name}>Rendy Ferdiansyah</span>
-                  <span className={styles.navbar__right__user__role}>Administrator</span>
+                <div className={styles.navbar__right__account}>
+                  <span className={styles.navbar__right__account__name}>Rendy Ferdiansyah</span>
+                  <span className={styles.navbar__right__account__role}>Administrator</span>
                 </div>
               </div>
               <hr className={styles.navbar__right__menu__divider} />

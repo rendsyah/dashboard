@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import cx from 'classnames';
 import { useRouter } from 'next/router';
-import { useSidebar } from '@/contexts/Sidebar';
-import { listMenu } from '../../../mock/menu';
+import { useSidebar } from '@/contexts';
+import { listMenu } from '@/libs/mock/menu';
 import SingleList from './SingleList';
 import NestedList from './NestedList';
 import styles from './Sidebar.module.scss';

@@ -37,7 +37,7 @@ export const listMenu = [
   },
   {
     name: 'Setting',
-    path: '/dashboard',
+    path: '/setting',
     icon: 'Setting',
     is_header: 1,
     child: [],

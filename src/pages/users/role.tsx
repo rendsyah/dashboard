@@ -1,9 +1,19 @@
+import React from 'react';
+import Head from 'next/head';
 import Layout from '@/components/Layout';
+import RoleComponent from '@/pagesComponents/Users/Role/Components';
 
-const SettingPage = () => {
-  return <div>test</div>;
+const UsersPage = () => {
+  return (
+    <>
+      <Head>
+        <title>Dashboard App | Role</title>
+      </Head>
+      <RoleComponent />
+    </>
+  );
 };
 
-SettingPage.getLayout = (page: React.ReactElement) => <Layout>{page}</Layout>;
+UsersPage.getLayout = (page: React.ReactElement) => <Layout>{page}</Layout>;
 
-export default SettingPage;
+export default UsersPage;

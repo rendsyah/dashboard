@@ -1,0 +1,43 @@
+$columns: 12;
+$gap: 20px;
+$breakpoints: (
+  xs: 480px,
+  sm: 768px,
+  md: 960px,
+  lg: 1170px,
+  xl: 1280px,
+);
+
+@mixin create-selectors($breakpoint: null) {
+  $prefix: if($breakpoint == null, '', '-#{$breakpoint}');
+
+  @for $i from 1 through $columns {
+    .col#{$prefix}-#{$i} {
+      grid-column-end: span $i;
+    }
+    .col-offset#{$prefix}-#{$i} {
+      grid-column-start: $i + 1;
+    }
+    .row#{$prefix}-#{$i} {
+      grid-row-end: span $i;
+    }
+    .row-offset#{$prefix}-#{$i} {
+      grid-row-start: $i + 1;
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  grid-gap: $gap;
+  gap: $gap;
+}
+
+@include create-selectors;
+
+@each $breakpoint, $width in $breakpoints {
+  @media (min-width: $width) {
+    @include create-selectors($breakpoint);
+  }
+}

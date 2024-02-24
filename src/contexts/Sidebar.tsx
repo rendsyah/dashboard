@@ -5,13 +5,9 @@ type SidebarContextProps = {
   handleSidebar: () => void;
 };
 
-type SidebarContextProviderProps = {
-  children: React.ReactNode;
-};
-
 const SidebarContext = React.createContext({} as SidebarContextProps);
 
-export const SidebarContextProvider = ({ children }: SidebarContextProviderProps) => {
+export const SidebarContextProvider = ({ children }: React.PropsWithChildren<unknown>) => {
   const [collapse, setCollapse] = React.useState(false);
 
   const handleSidebar = () => {

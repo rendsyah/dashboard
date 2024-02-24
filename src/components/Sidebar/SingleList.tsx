@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import cx from 'classnames';
-import IconSquare from '../Icon/Square';
-import IconSelector from '../Icon/Selector';
+import { IconSelector, IconSquare } from '../Icon';
 import styles from './Sidebar.module.scss';
 
 const SingleList: React.FC<SidebarListProps> = (props: SidebarListProps) => {

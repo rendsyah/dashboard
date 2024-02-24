@@ -1,0 +1,11 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition($time, $element: all) {
+  -webkit-transition: $element $time ease-out;
+  -moz-transition: $element $time ease-out;
+  transition: $element $time ease-out;
+}
