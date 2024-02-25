@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Copy, User } from 'react-feather';
 import Paper from '@/components/Paper';
 import styles from '../Role.module.scss';
+import Avatar from '@/components/Avatar';
 
 const RoleCard: React.FC<RoleCardProps> = ({ role }) => {
   return (

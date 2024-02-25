@@ -1,6 +1,8 @@
 @use '@/styles/utils';
 @use '@/styles/variables' as var;
 
+@use '@/components/Avatar/Avatar.module.scss';
+
 .navbar {
   @include utils.transition(0.2s);
 
@@ -88,7 +90,6 @@
 
     &__notify {
       position: relative;
-      cursor: pointer;
 
       &::before {
         content: '';
@@ -118,9 +119,9 @@
     }
 
     &__avatar {
+      @extend .avatar;
+
       position: relative;
-      width: 36px;
-      height: 36px;
 
       &::after {
         content: '';
@@ -136,9 +137,7 @@
     }
 
     &__image {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
+      @extend .avatar__image;
     }
 
     &__account {
@@ -228,6 +227,11 @@
         }
       }
     }
+  }
+
+  &__icon {
+    line-height: 0;
+    cursor: pointer;
   }
 }
 

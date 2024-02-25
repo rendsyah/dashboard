@@ -1,5 +1,5 @@
 type AvatarProps = {
-  size: 'small' | 'large';
+  size?: 'small' | 'large';
   name?: string;
   children?: React.ReactNode;
   src?: string;

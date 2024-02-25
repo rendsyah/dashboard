@@ -51,7 +51,9 @@ const Navbar: React.FC = () => {
   return (
     <div className={cx(styles.navbar, { [styles.navbar__sticky]: triggerScroll })}>
       <div className={styles.navbar__left} onClick={handleSidebar}>
-        <Menu size={18} />
+        <div className={styles.navbar__icon}>
+          <Menu size={18} />
+        </div>
       </div>
       <div className={styles.navbar__right}>
         <ul className={styles.navbar__right__quick}>
@@ -68,10 +70,10 @@ const Navbar: React.FC = () => {
             ))}
         </ul>
         <hr className={styles.navbar__right__divider} />
-        <div className={cx({ [styles.navbar__right__notify]: true })}>
+        <div className={cx(styles.navbar__icon, { [styles.navbar__right__notify]: true })}>
           <Bell size={18} />
         </div>
-        <div className={cx({ [styles.navbar__right__notify]: true })}>
+        <div className={cx(styles.navbar__icon, { [styles.navbar__right__notify]: true })}>
           <Inbox size={18} />
         </div>
         <div ref={openProfileRef} className={styles.navbar__right__profile}>
